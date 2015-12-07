@@ -121,7 +121,7 @@
                     onHandleDown: '&', // calls optional function when handle is grabbed
                     onHandleUp: '&', // calls optional function when handle is released
                     orientation: '@', // options: horizontal | vertical | vertical left | vertical right
-                    step: '@',
+                    step: '=',
                     decimalPlaces: '@',
                     filter: '@',
                     filterOptions: '@',
@@ -532,6 +532,8 @@
                                         proposal,
                                         other,
                                         per = (scope.step / range) * 100,
+                                        // This also works and makes the slider more responsive:
+                                        // per = (scope.step / range),
                                         otherModelPosition = (((index === 0 ? modelMax() : modelMin()) - scope.min) / range) * 100;
 
                                     if (currentClick[0] === "x") {
@@ -589,12 +591,17 @@
                                     if (movement[orientation] && proposal != previousProposal) {
 
                                         if (index === 0) {
+                                            if (scope.step < 1) {
+                                                scope.decimalPlaces = 2;
+                                            }
 
                                             // update model as we slide
                                             modelMin(parseFloat(parseFloat((((proposal * range) / 100) + scope.min)).toFixed(scope.decimalPlaces)));
 
                                         } else if (index === 1) {
-
+                                            if (scope.step < 1) {
+                                                scope.decimalPlaces = 2;
+                                            }
                                             modelMax(parseFloat(parseFloat((((proposal * range) / 100) + scope.min)).toFixed(scope.decimalPlaces)));
                                         }
 
