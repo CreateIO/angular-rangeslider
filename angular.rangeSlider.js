@@ -35,7 +35,7 @@
 
 */
 
-(function() {
+// (function() {
     'use strict';
 
     // check if we need to support legacy angular
@@ -46,7 +46,7 @@
      * Touch friendly.
      * @directive
      */
-    angular.module('ui-rangeSlider', [])
+    angular.module('createApp')
         .directive('rangeSlider', ['$document', '$filter', '$log', function($document, $filter, $log) {
 
             // test for mouse, pointer or touch
@@ -713,4 +713,4 @@
                 window.setTimeout(callback, 1000 / 60);
             };
     })();
-}());
+// }());
